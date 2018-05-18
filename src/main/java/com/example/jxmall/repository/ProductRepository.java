@@ -8,8 +8,11 @@ import java.util.List;
 
 
 @Repository
-public interface ProductRepositry extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {
 
-    List<Product> findByNameContainingOrDescriptionContaining(String name, String description);
+    List<Product> findByName(String name);
+
+    List<Product> findByNameContainingAndDescriptionContaining(String name, String description);
+
 
 }
