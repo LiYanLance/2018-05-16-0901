@@ -5,7 +5,11 @@
     {
       "enabled": true,
       "key": "IP",
+<<<<<<< HEAD
       "value": "123.138.87.13",
+=======
+      "value": "113.140.6.195",
+>>>>>>> ee2818d7d23c60a6ca2dd05fc363d95dbeaa3b02
       "type": "text"
     },
     {
