@@ -23,11 +23,8 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<Void> addProduct(@RequestBody Product product, UriComponentsBuilder builder) {
         productRepository.save(product);
-
         UriComponents uriComponents = builder.path("/products/{id}").buildAndExpand(1);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(uriComponents.toUri());
-        return new ResponseEntity<Void>(HttpStatus.CREATED);
+        return ResponseEntity.created(uriComponents.toUri()).build();
     }
 
     /* 修改商品信息 */
