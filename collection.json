@@ -180,9 +180,9 @@
 						"url": {
 							"raw": "http://{{IP}}:{{port}}/products?name=方便面",
 							"protocol": "http",
-							"host": [
+							"host": 
 								"{{IP}}"
-							],
+							,
 							"port": "{{port}}",
 							"path": [
 								"products"
