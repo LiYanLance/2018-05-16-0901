@@ -178,7 +178,7 @@
 					],
 					"request": {
 						"url": {
-							"raw": "http://{{host}}:{{port}}/products?name=方便面",
+							"raw": "http://{{IP}}:{{port}}/products?name=方便面",
 							"protocol": "http",
 							"host": [
 								"{{IP}}"
@@ -232,7 +232,7 @@
 					],
 					"request": {
 						"url": {
-							"raw": "http://{{host}}:{{port}}/products?name=方便面&description=师",
+							"raw": "http://{{IP}}:{{port}}/products?name=方便面&description=师",
 							"protocol": "http",
 							"host": [
 								"{{IP}}"
