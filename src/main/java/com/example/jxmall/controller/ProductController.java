@@ -3,9 +3,12 @@ package com.example.jxmall.controller;
 import com.example.jxmall.entity.Product;
 import com.example.jxmall.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -18,8 +21,12 @@ public class ProductController {
 
     /* 创建新商品 */
     @PostMapping
-    public ResponseEntity<Void> addProduct(@RequestBody Product product) {
+    public ResponseEntity<Void> addProduct(@RequestBody Product product, UriComponentsBuilder builder) {
         productRepository.save(product);
+
+        UriComponents uriComponents = builder.path("/products/{id}").buildAndExpand(1);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(uriComponents.toUri());
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
@@ -33,7 +40,7 @@ public class ProductController {
             productRepository.save(product);
             return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<Void>(HttpStatus.200);
+        return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
     }
 
     /* 查询 - 根据商品id查找商品 */
