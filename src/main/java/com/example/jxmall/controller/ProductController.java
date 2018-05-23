@@ -3,6 +3,8 @@ package com.example.jxmall.controller;
 import com.example.jxmall.entity.Product;
 import com.example.jxmall.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,19 +18,22 @@ public class ProductController {
 
     /* 创建新商品 */
     @PostMapping
-    public Product addProduct(@RequestBody Product product) {
-        return productRepository.save(product);
+    public ResponseEntity<Void> addProduct(@RequestBody Product product) {
+        productRepository.save(product);
+        return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
     /* 修改商品信息 */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public void updataProduct(@PathVariable long id, @RequestBody Product product) {
+    public ResponseEntity<Void> updataProduct(@PathVariable long id, @RequestBody Product product) {
         if (productRepository.existsById(id)){
             int inventory = productRepository.findById(id).get().getInventory();
             product.setId(id);
             product.setInventory(inventory);
             productRepository.save(product);
+            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
         }
+        return new ResponseEntity<Void>(HttpStatus.200);
     }
 
     /* 查询 - 根据商品id查找商品 */
