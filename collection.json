@@ -181,9 +181,9 @@
 							"raw": "http://{{IP}}:{{port}}/products?name=方便面",
 							"protocol": "http",
 							"host": [
-								"{{IP}}:{{port}}"
+								"{{IP}}"
 							],
-					
+							"port": "{{port}}",
 							"path": [
 								"products"
 							],
